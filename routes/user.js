@@ -28,7 +28,7 @@ router.post("/upload-to-cloudinary", auth, async (req, res) => {
       .replace(/[^a-zA-Z0-9]/g, "_")
       .toLowerCase();
 
-    const folder = `nila_matrimony/users/${user._id}_${safeName}/${type || "gallery"}`;
+    const folder = `nila_homes/users/${user._id}_${safeName}/${type || "gallery"}`;
 
     const result = await cloudinary.uploader.upload(base64Image, {
       folder,
