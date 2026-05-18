@@ -1,0 +1,22 @@
+const mongoose = require("mongoose");
+
+const shortlistSchema = new mongoose.Schema(
+  {
+    sender: { // who shortlisted
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    receiver: { // who is shortlisted
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+// prevent duplicate
+shortlistSchema.index({ sender: 1, receiver: 1 }, { unique: true });
+
+module.exports = mongoose.model("Shortlist", shortlistSchema);
